@@ -1,9 +1,9 @@
 pipeline{
     agent any
-    tools {
+   // tools {
        //tool name: 'Maven-3-9.1', type: 'maven'
-       maven: 'Maven "3-9.1"'
-    }
+     //  maven: 'Maven "3-9.1"'
+    //}
         
     stages{
        stage("Git Check Out"){
