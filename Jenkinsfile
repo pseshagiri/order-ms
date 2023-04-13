@@ -16,7 +16,14 @@ pipeline{
                sh "mvn clean install"
            }
         }
-
+		 stage("Docker Image and Building"){
+           steps{
+            script {
+               docker build -t pseshagiri//order-ms:1.0 
+            }
+               
+           }
+        }
  
     }
 
