@@ -51,7 +51,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>order-ms</finalName>
+		<finalName>orders-ms</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
