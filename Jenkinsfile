@@ -19,7 +19,7 @@ pipeline{
 		 stage("Docker Image and Building"){
            steps{
             script {
-              sh 'docker build -t pseshagiri//order-ms:1.0 .'
+              sh 'docker build -t pseshagiri/order-ms:1.0 .'
             }
                
            }
