@@ -24,11 +24,19 @@ pipeline{
                
            }
         }
- 
-    }
+        stage("Kubernetus Deployment to mini kube"){
+         steps{
+            script{
+                sh 'kubectl apply -f ./deployment.yaml'
+              }
+            }
+
+          }                                            
+        } //stages
+    }// pipeline
 
    
    
   
     
-}
+
