@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: Orders
+ 
+spec:
+ replicate: 2
+ selectors:
+   matchLabels:
+    application: Orders
+ template:
+ metadata:
+  labels:
+   application: Orders
+  containers:
+   - name: Orders
+     image: pseshagiri/order-ms:1.0
+     imagePullPolicy: always
+     ports:
+      - containerPort: 9001
+        targetPort: 9001
+
+# service type loadbalance
+---
+
+apiVersion: app/v1
+kind: Service
+metadata:
+ name: order-service
+ labels:
+  app: order-service
+  k8s: order-service
+spec:
+ selectors:
+  app: order-service
+ ports:
+  - name: http
+    port: 9001
+    protocol: tcp
+    targetPort: 9001 
+ type: LoadBalancer
+   
+ 
+       
+   
