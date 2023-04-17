@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: Orders
- 
+ name: order-ms 
 spec:
  replicate: 2
- selectors:
+ selector:
    matchLabels:
-    application: Orders
+    app: order-ms
  template:
- metadata:
-  labels:
-   application: Orders
-  containers:
-   - name: Orders
-     image: pseshagiri/order-ms:1.0
-     imagePullPolicy: always
-     ports:
-      - containerPort: 9001
-        targetPort: 9001
+  metadata:
+   labels:
+    app: order-ms
+  spec:  
+   containers:
+    - name: order-ms
+      image: pseshagiri/microservices:order-ms-1.0
+      imagePullPolicy: always
+      ports:
+       - containerPort: 9001
+         targetPort: 9001
 
 # service type loadbalance
 ---
@@ -31,7 +31,7 @@ metadata:
   app: order-service
   k8s: order-service
 spec:
- selectors:
+ selector:
   app: order-service
  ports:
   - name: http
