@@ -32,26 +32,29 @@ pipeline{
         }
         stage("Docker Hub Push"){
           steps{
+          script{
            withCredentials([usernameColonPassword(credentialsId: 'dockerhublogin', 
-                     variable: 'dockerhublogin')]) {
-    		// script {
-    		      sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'  
-    		  //}
+                     variable: 'dockerhublogin')]) {    		
+    		 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'  
+    		  
 			}
+		  }	
 		 }	        
         }
         stage('Push') {
            steps {
-             sh 'docker push pseshagiri/order-ms:1.0'
+           scripts{
+             sh 'docker push pseshagiri/microservices:order-ms'
+            } 
            }
     }       
-        //stage("Kubernetus Deployment to mini kube"){
-         //steps{
-            //script{
-                //sh 'kubectl apply -f ./deployment.yaml'
-              //}
-            //}
-          //}  // kubernetes 
+        stage("Kubernetus Deployment to mini kube"){
+         steps{
+            script{
+                sh 'kubectl apply -f ./deployment.yaml'
+              }
+            }
+          }  // kubernetes 
                                                    
         } //stages
         post{
