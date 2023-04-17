@@ -43,7 +43,7 @@ pipeline{
         }
         stage('Push') {
            steps {
-           scripts{
+           script{
              sh 'docker push pseshagiri/microservices:order-ms'
             } 
            }
