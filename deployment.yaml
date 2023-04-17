@@ -15,7 +15,7 @@ spec:
    containers:
     - name: order-ms
       image: pseshagiri/microservices:order-ms-1.0
-      imagePullPolicy: always
+      imagePullPolicy: Always
       ports:
        - containerPort: 9001         
 
@@ -25,13 +25,13 @@ spec:
 apiVersion: app/v1
 kind: Service
 metadata:
- name: order-service
+ name: order-ms
  labels:
-  app: order-service
-  k8s: order-service
+  app: order-ms
+  k8s: order-ms
 spec:
  selector:
-  app: order-service
+  app: order-ms
  ports:
   - name: http
     port: 9001
