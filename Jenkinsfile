@@ -34,19 +34,25 @@ pipeline{
           steps{
            withCredentials([usernameColonPassword(credentialsId: 'dockerhublogin', 
                      variable: 'dockerhublogin')]) {
-    		  script {
+    		 // script {
     		      sh 'echo DOCKERHUB_CREDENTIALS_PSW |docker login -u DOCKERHUB_CREDENTIALS_USR --password-stdin'  
-    		  }
+    		  //}
 			}
 		 }	        
-        }       
+        }
+        stage('Push') {
+           steps {
+             sh 'docker push lloydmatereke/jenkins-docker-hub'
+           }
+    }       
         //stage("Kubernetus Deployment to mini kube"){
          //steps{
             //script{
                 //sh 'kubectl apply -f ./deployment.yaml'
               //}
             //}
-          //}  // kubernetes                                          
+          //}  // kubernetes 
+                                                   
         } //stages
         post{
           always{
