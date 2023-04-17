@@ -1,5 +1,8 @@
 pipeline{
     agent any
+     environment {
+       DOCKERHUB_CREDENTIALS = credentials('dockerhublogin')
+     }
     // tools {
        //tool name: 'Maven-3-9.1', type: 'maven'
       // maven: 'Maven3'
@@ -27,16 +30,32 @@ pipeline{
                
            }
         }
-        stage("Kubernetus Deployment to mini kube"){
-         steps{
+        stage("Docker Hub Push"){
+           withCredentials([usernameColonPassword(credentialsId: 'dockerhublogin', 
+                     variable: 'dockerhublogin')]) {
+    		  script {
+    		      sh 'echo DOCKERHUB_CREDENTIALS_PSW |docker login -u DOCKERHUB_CREDENTIALS_USR --password-stdin'  
+    		  }
+			}        
+        }       
+        //stage("Kubernetus Deployment to mini kube"){
+         //steps{
+            //script{
+                //sh 'kubectl apply -f ./deployment.yaml'
+              //}
+            //}
+          //}  // kubernetes                                          
+        } //stages
+        post{
+          always{
             script{
-                sh 'kubectl apply -f ./deployment.yaml'
-              }
+                sh 'docker logout'
             }
 
-          }                                            
-        } //stages
-    }// pipeline
+          } 
+        }
+
+    }// pipelin//e
 
    
    
