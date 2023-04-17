@@ -42,7 +42,7 @@ pipeline{
         }
         stage('Push') {
            steps {
-             sh 'docker push lloydmatereke/jenkins-docker-hub'
+             sh 'docker push pseshagiri/order-ms:1.0'
            }
     }       
         //stage("Kubernetus Deployment to mini kube"){
