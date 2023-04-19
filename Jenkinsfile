@@ -1,8 +1,8 @@
 pipeline{
     agent any
-     environment {
-       DOCKERHUB_CREDENTIALS = credentials('dockerhublogin')
-     }
+    // environment {
+      // DOCKERHUB_CREDENTIALS = credentials('dockerhublogin')
+     //}
     // tools {
        //tool name: 'Maven-3-9.1', type: 'maven'
       // maven: 'Maven3'
