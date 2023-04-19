@@ -30,33 +30,44 @@ pipeline{
                
            }
         }
-        stage("Docker Hub Push"){
-          steps{
-          script{
-           withCredentials([usernameColonPassword(credentialsId: 'dockerhublogin', 
-                     variable: 'dockerhublogin')]) {    		
-    		 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'  
+        //stage("Docker Hub Push"){
+          //steps{
+          //script{
+           //withCredentials([usernameColonPassword(credentialsId: 'dockerhublogin', 
+             //        variable: 'dockerhublogin')]) {    		
+    		 //sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'  
     		  
-			}
-		  }	
-		 }	        
-        }
-        stage('Push') {
-           steps {
-           script{
-             sh 'docker push pseshagiri/microservices:order-ms-1.0'
-            } 
-           }
-    }       
-        stage("Kubernetus Deployment to mini kube"){
-         steps{
-            script{
-               kubeconfig(credentialsId:'minikubeconfig',serverUrl:'http://192.168.49.1:8443') {
-                 sh 'kubectl apply -f ./deployment.yaml'   
-               }                
-              }
-            }
-          }  // kubernetes 
+			//}
+		  //}	
+		 //}	        
+       // }
+        
+        //stage('Push') {
+          // steps {
+           //script{
+             //sh 'docker push pseshagiri/microservices:order-ms-1.0'
+            //} 
+           //}
+        //}       
+       // stage("Kubernetus Deployment to mini kube"){
+         //steps{
+           /// script{
+              // kubeconfig(credentialsId:'minikubeconfig',serverUrl:'http://192.168.49.1:8443') {
+                // sh 'kubectl apply -f ./deployment.yaml'   
+               //}                
+              //}
+           // }
+          //}  // kubernetes 
+          
+          // stage("Kubernetus Deployment to mini kube"){
+         //steps{
+           /// script{
+              // kubeconfig(credentialsId:'ekskubeconfig',serverUrl:'http://192.168.49.1:8443') {
+                // sh 'kubectl apply -f ./deployment.yaml'   
+               //}                
+              //}
+            //}
+         //}  // eks kubernetes 
                                                    
         } //stages
         post{
