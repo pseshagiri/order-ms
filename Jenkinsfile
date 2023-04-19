@@ -59,15 +59,15 @@ pipeline{
            // }
           //}  // kubernetes 
           
-          // stage("Kubernetus Deployment to mini kube"){
-         //steps{
-           /// script{
-              // kubeconfig(credentialsId:'ekskubeconfig',serverUrl:'http://192.168.49.1:8443') {
-                // sh 'kubectl apply -f ./deployment.yaml'   
+           stage("Kubernetus Deployment to mini kube"){
+           steps{
+             script{
+              // kubeconfig(credentialsId:'ekskubeconfig',serverUrl:'https://0F67688B4AA1E910144AE9D9D7518FDF.gr7.ap-south-1.eks.amazonaws.com') {
+                 sh 'kubectl apply -f ./deployment.yaml'   
                //}                
-              //}
-            //}
-         //}  // eks kubernetes 
+              }
+            }
+          }  // eks kubernetes 
                                                    
         } //stages
         post{
