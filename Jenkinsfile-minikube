@@ -45,7 +45,7 @@ pipeline{
         stage('Push') {
            steps {
            script{
-             sh 'docker push pseshagiri/microservices:order-ms-1.2'
+             sh 'docker push pseshagiri/microservices:order-ms-1.2 .'
             } 
            }
         }       
