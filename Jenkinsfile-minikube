@@ -48,7 +48,7 @@ pipeline{
              sh 'docker push pseshagiri/microservices:order-ms-1.2 .'
             } 
            }
-        }       
+        }    // push    
         stage("Kubernetus Deployment to mini kube"){
          steps{
             script{
