@@ -18,15 +18,15 @@ spec:
       imagePullPolicy: Always
       ports:
        - containerPort: 9001
-   livenessProbe:
-    httpGet:
-     path: /orders
-     port: 9001
-     httpHeaders:
-      - name: Custom-Header
-        value: Awesome
-    initialDelaySeconds: 3
-    periodSeconds: 3         
+      livenessProbe:
+       httpGet:
+       path: /orders
+       port: 9001
+       httpHeaders:
+        - name: Custom-Header
+          value: Awesome
+       initialDelaySeconds: 3
+       periodSeconds: 3         
 
 # service type loadbalance
 ---
