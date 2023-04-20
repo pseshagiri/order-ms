@@ -13,8 +13,8 @@ spec:
     app: order-ms
   spec:  
    containers:
-    - name: order-ms
-      image: pseshagiri/:orders-ms
+    - name: order-ms-liveness
+      image: pseshagiri/microservices:order-ms-1.2
       imagePullPolicy: Always
       ports:
        - containerPort: 9001
