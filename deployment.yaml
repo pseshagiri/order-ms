@@ -14,10 +14,19 @@ spec:
   spec:  
    containers:
     - name: order-ms
-      image: pseshagiri/microservices:order-ms-1.0
+      image: pseshagiri/:orders-ms
       imagePullPolicy: Always
       ports:
-       - containerPort: 9001         
+       - containerPort: 9001
+   livenessProbe:
+    httpGet:
+     path: /orders
+     port: 9001
+     httpHeaders:
+      - name: Custom-Header
+        value: Awesome
+    initialDelaySeconds: 3
+    periodSeconds: 3         
 
 # service type loadbalance
 ---
