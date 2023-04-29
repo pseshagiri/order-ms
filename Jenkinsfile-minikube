@@ -2,12 +2,7 @@ pipeline{
     agent any
     environment {
        DOCKERHUB_CREDENTIALS = credentials('dockerhublogin')
-     }
-    // tools {
-       //tool name: 'Maven-3-9.1', type: 'maven'
-      // maven: 'Maven3'
-    //}
-        
+     }  
     stages{
        stage("Git Check Out"){
           steps{
@@ -25,7 +20,7 @@ pipeline{
 		 stage("Docker Image and Building"){
            steps{
             script {
-              sh 'docker build -t pseshagiri/microservices:order-ms-1.2 .'
+              sh 'docker build -t pseshagiri/microservices:order-ms-1.3 .'
             }
                
            }
@@ -45,7 +40,7 @@ pipeline{
         stage('Push') {
            steps {
            script{
-             sh 'docker push pseshagiri/microservices:order-ms-1.2'
+             sh 'docker push pseshagiri/microservices:order-ms-1.3'
             } 
            }
         }    // push    
