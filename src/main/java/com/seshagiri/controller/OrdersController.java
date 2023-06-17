@@ -12,7 +12,7 @@ public class OrdersController {
 	@GetMapping()
 	public String getAll() {
 		System.out.println("Called getALL Request ...");
-		return "Hai";
+		return "Hello Bits Jenkins sessions";
 	}
 	
 	@GetMapping("/{id}")
