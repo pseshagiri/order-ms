@@ -59,14 +59,14 @@ pipeline{
            // }
           //}  // kubernetes 
           
-           stage('Pushing to ECR') {
-     steps{  
-         script {
-                sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 700258689816.dkr.ecr.ap-south-1.amazonaws.com'
-                sh 'docker push 700258689816.dkr.ecr.ap-south-1.amazonaws.com/retails:orders-ms'
-         }
-        }
-      }
+          // stage('Pushing to ECR') {
+    // steps{  
+        // script {
+              //  sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 700258689816.dkr.ecr.ap-south-1.amazonaws.com'
+              //  sh 'docker push 700258689816.dkr.ecr.ap-south-1.amazonaws.com/retails:orders-ms'
+        // }
+       // }
+     // }
           
            stage("Kubernetus Deployment to mini kube"){
            steps{
