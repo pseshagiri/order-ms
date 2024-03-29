@@ -1,9 +1,9 @@
 pipeline{
     agent any
     
-    // environment {
-      // DOCKERHUB_CREDENTIALS = credentials('dockerhublogin')
-     //}
+     environment {
+       DOCKERHUB_CREDENTIALS = credentials('dockerhublogin')
+      }
     // tools {
        //tool name: 'Maven-3-9.1', type: 'maven'
       // maven: 'Maven3'
@@ -62,10 +62,10 @@ pipeline{
                
        stage("Kubernetus Deployment to mini kube"){
          steps{
-            script{
-              //kubeconfig(credentialsId:'minikubeconfig',serverUrl:'http://192.168.49.1:8443') {
+            script{            
+              kubeconfig(credentialsId:'minikubeconfig',serverUrl:'https://127.0.0.1:32769') {
                  sh 'kubectl apply -f ./deployment.yaml'   
-               //}                
+               }                
               }
             }
           }  // kubernetes 
