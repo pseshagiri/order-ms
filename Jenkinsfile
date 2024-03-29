@@ -64,7 +64,7 @@ pipeline{
          steps{
             script{            
               kubeconfig(credentialsId:'minikubeconfig',serverUrl:'https://127.0.0.1:32769') {
-                 sh 'kubectl apply -f ./deployment.yaml'   
+                 sh 'kubectl apply -f --validate=false ./deployment.yaml '   
                }                
               }
             }
