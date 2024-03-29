@@ -26,7 +26,10 @@ pipeline{
 		 stage("Docker Image and Building"){
            steps{
             script {
-              sh 'sudo docker build -t pseshagiri/microservices:orders-ms-2.0 .'
+            withCredentials([usernameColonPassword(credentialsId: 'dockerhublogin', 
+                     variable:'dockerhublogin')]){
+                         sh 'sudo docker build -t pseshagiri/microservices:orders-ms-2.0 .'
+                     }
             }
                
            }
@@ -46,7 +49,7 @@ pipeline{
         stage('Push') {
            steps {
            script{
-             sh ' sudo docker push pseshagiri/microservices:order-ms-2.0'
+             sh 'docker push pseshagiri/microservices:order-ms-2.0'
             } 
            }
         }
