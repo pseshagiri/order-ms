@@ -34,22 +34,25 @@ pipeline{
                
            }
         }
-        stage("Docker Hub Push"){
-          steps{
-           script{
-            withCredentials([usernameColonPassword(credentialsId: 'dockerhublogin', 
-                     variable:'dockerhublogin')]) {    		
-    		  sh ' sudo echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'  
+        //stage("Docker Hub Push"){
+          //steps{
+           //script{
+            //withCredentials([usernameColonPassword(credentialsId: 'dockerhublogin', 
+              //       variable:'dockerhublogin')]) {    		
+    		  //sh ' sudo echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'  
     		  
-			}
-		  }	
-		 }	        
-        }
+			//}
+		  //}	
+		 //}	        
+        //}
         
         stage('Push') {
            steps {
            script{
-             sh 'docker push pseshagiri/microservices:order-ms-2.0'
+             withCredentials([usernameColonPassword(credentialsId: 'dockerhublogin', 
+                     variable:'dockerhublogin')]){
+             sh 'sudo docker push pseshagiri/microservices:order-ms-2.0'
+             }
             } 
            }
         }
