@@ -28,7 +28,7 @@ pipeline{
             script {
             withCredentials([usernameColonPassword(credentialsId: 'dockerhublogin', 
                      variable:'dockerhublogin')]){
-                         sh 'sudo docker build -t pseshagiri/microservices:orders-ms-2.0 .'
+                         sh 'docker build -t pseshagiri/microservices:orders-ms-2.0 .'
                      }
             }
                
@@ -51,7 +51,7 @@ pipeline{
            script{
              withCredentials([usernameColonPassword(credentialsId: 'dockerhublogin', 
                      variable:'dockerhublogin')]){
-             sh 'sudo docker push pseshagiri/microservices:order-ms-2.0'
+             sh 'docker push pseshagiri/microservices:order-ms-2.0'
              }
             } 
            }
