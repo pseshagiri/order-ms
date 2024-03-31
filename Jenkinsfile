@@ -28,7 +28,7 @@ pipeline{
             script {
             withCredentials([usernameColonPassword(credentialsId: 'dockerhublogin', 
                      variable:'dockerhublogin')]){
-                         sh 'docker build -t pseshagiri/microservices:orders-ms-2.0 .'
+                         sh 'docker build -t pseshagiri/microservices:orders-ms-3.0 .'
                      }
             }
                
