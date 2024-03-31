@@ -53,7 +53,7 @@ pipeline{
                      variable:'dockerhublogin')]){
             // sh 'docker login -u "pseshagiri" -p "mypassword" docker.io'
                 docker.withRegistry( '', 'dockerhublogin' ) {
-             	sh 'docker push pseshagiri/microservices:orders-ms-2.0'
+             	sh 'docker push pseshagiri/microservices:orders-ms-3.0'
                }
              }
             } 
