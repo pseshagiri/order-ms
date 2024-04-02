@@ -63,9 +63,12 @@ pipeline{
        stage("Kubernetus Deployment to mini kube"){
          steps{
             script{            
-              kubeconfig(credentialsId:'minikubeconfig',serverUrl:'https://127.0.0.1:32769') {
-                 sh 'kubectl apply -f --validate=false ./deployment.yaml '   
-               }                
+              //kubeconfig(credentialsId:'minikubeconfig',serverUrl:'https://127.0.0.1:32769') {
+		      kubeconfig(credentialsId: 'kubeconfigfile', serverUrl: '') {
+    				sh 'kubectl apply -f --validate=false ./deployment.yaml '
+			}
+                    
+               //}                
               }
             }
           }  // kubernetes 
