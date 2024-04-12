@@ -65,7 +65,7 @@ pipeline{
            }
         }
                
-       stage("Kubernetus Deployment to mini kube"){
+      // stage("Kubernetus Deployment to mini kube"){
         // steps{
            // script{            
               //kubeconfig(credentialsId:'minikubeconfig',serverUrl:'https://127.0.0.1:32769') {
@@ -76,7 +76,7 @@ pipeline{
                //}                
              // }
            // }
-          }  // kubernetes 
+         // }  // kubernetes 
           
           
                                                    
