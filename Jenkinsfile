@@ -23,6 +23,11 @@ pipeline{
                
            }
         }
+	    stage("Sinar Qube Check"){
+		steps{
+		  sh "/usr/bin/mvn sonar:sonar"	
+		}    
+	    }
 		 stage("Docker Image and Building"){
            steps{
             script {
@@ -61,16 +66,16 @@ pipeline{
         }
                
        stage("Kubernetus Deployment to mini kube"){
-         steps{
-            script{            
+        // steps{
+           // script{            
               //kubeconfig(credentialsId:'minikubeconfig',serverUrl:'https://127.0.0.1:32769') {
-		      kubeconfig(credentialsId: 'kubeconfigfile', serverUrl: '') {
-    				sh 'kubectl apply -f ./deployment.yaml '
-			}
+		     // kubeconfig(credentialsId: 'kubeconfigfile', serverUrl: '') {
+    				//sh 'kubectl apply -f ./deployment.yaml '
+			//}
                     
                //}                
-              }
-            }
+             // }
+           // }
           }  // kubernetes 
           
           
