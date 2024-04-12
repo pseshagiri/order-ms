@@ -15,22 +15,15 @@ pipeline{
             git branch: 'main', credentialsId: 'gitid', url: 'https://github.com/pseshagiri/order-ms.git'
           }
        }
-       stage("Clean Build"){
+       stage("sonar and mavenClean Build"){
            steps{
-           //withMaven(globalMavenSettingsConfig: '--- Use system default settings or file path ---', jdk: '--- Use system default JDK ---', maven: 'Maven3', mavenSettingsConfig: '--- Use system default settings or file path ---') {
-    			sh "mvn clean install"
-			//}
-               
+              withSonarQubeEnv(installationName: 'sonarqube-jenkins', credentialsId: 'sonarqube-jenkin-token') {
+   		sh "mvn clean install sonar:sonar -Dsonar.sources=src/main/java/ -Dsonar.java.binaries=target/classes"
+	   }               
            }
         }
-	    stage("Sonar Qube Check"){
-		steps{
-			withSonarQubeEnv(installationName: 'sonarqube-jenkins', credentialsId: 'sonarqube-jenkin-token') {
-   			 sh "mvn clean sonar:sonar -Dsonar.sources=src/main/java/ -Dsonar.java.binaries=target/classes"
-		   }	  	
-		}    
-	    }
-		 stage("Docker Image and Building"){
+	   
+	 stage("Docker Image and Building"){
            steps{
             script {
             withCredentials([usernameColonPassword(credentialsId: 'dockerhublogin', 
