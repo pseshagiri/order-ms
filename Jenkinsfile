@@ -26,11 +26,7 @@ pipeline{
 	    stage("Sonar Qube Check"){
 		steps{
 			withSonarQubeEnv(installationName: 'sonarqube-jenkins', credentialsId: 'sonarqube-jenkin-token') {
-   			 sh "mvn clean sonar:sonar -Dsonar.projectKey=orderms-jenkins
-			    -Dsonar.host.url=http://localhost:9000
-			    -Dsonar.login=loginHASH
-			    -Dsonar.sources=src/main/java/
-			    -Dsonar.java.binaries=target/classes"
+   			 sh "mvn clean sonar:sonar -Dsonar.projectKey=orderms-jenkins -Dsonar.host.url=http://localhost:9000 -Dsonar.login=loginHASH -Dsonar.sources=src/main/java/ -Dsonar.java.binaries=target/classes"
 		   }	  	
 		}    
 	    }
