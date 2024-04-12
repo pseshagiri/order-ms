@@ -23,12 +23,11 @@ pipeline{
                
            }
         }
-	    stage("Sinar Qube Check"){
+	    stage("Sonar Qube Check"){
 		steps{
 			withSonarQubeEnv(installationName: 'sonarqube-jenkins', credentialsId: 'sonarqube-jenkin-token') {
    			 sh "mvn clean sonar:sonar"
-			}
-		  	
+		   }	  	
 		}    
 	    }
 		 stage("Docker Image and Building"){
