@@ -8,7 +8,7 @@ pipeline{
        //tool name: 'Maven-3-9.1', type: 'maven'
       // maven: 'Maven3'
     //}
-        
+     
     stages{
        stage("Git Check Out"){
           steps{
@@ -25,7 +25,7 @@ pipeline{
         }
 	    stage("Sinar Qube Check"){
 		steps{
-		  sh "mvn sonar:sonar"	
+		  sh "mvn clean verify sonar:sonar -Dsonar.projectKey=orderms-jenkins"	
 		}    
 	    }
 		 stage("Docker Image and Building"){
