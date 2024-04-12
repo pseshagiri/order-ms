@@ -25,7 +25,10 @@ pipeline{
         }
 	    stage("Sinar Qube Check"){
 		steps{
-		  sh "mvn clean verify sonar:sonar -Dsonar.projectKey=orderms-jenkins"	
+			withSonarQubeEnv(credentialsId: 'sonarqube-jenkin-token') {
+   			 sh "mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin-3.9.0.2155:sonar"
+			}
+		  	
 		}    
 	    }
 		 stage("Docker Image and Building"){
