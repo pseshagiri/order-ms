@@ -26,7 +26,7 @@ pipeline{
 	    stage("Sinar Qube Check"){
 		steps{
 			withSonarQubeEnv(installationName: 'sonarqube-jenkins', credentialsId: 'sonarqube-jenkin-token') {
-   			 sh "mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin-3.9.0.2155:sonar"
+   			 sh "mvn clean sonar:sonar"
 			}
 		  	
 		}    
