@@ -18,14 +18,14 @@ pipeline{
        stage("Clean Build"){
            steps{
            //withMaven(globalMavenSettingsConfig: '--- Use system default settings or file path ---', jdk: '--- Use system default JDK ---', maven: 'Maven3', mavenSettingsConfig: '--- Use system default settings or file path ---') {
-    			sh "/usr/bin/mvn clean install"
+    			sh "mvn clean install"
 			//}
                
            }
         }
 	    stage("Sinar Qube Check"){
 		steps{
-		  sh "/usr/bin/mvn sonar:sonar"	
+		  sh "mvn sonar:sonar"	
 		}    
 	    }
 		 stage("Docker Image and Building"){
