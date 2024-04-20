@@ -18,7 +18,7 @@ pipeline{
        stage("sonar and mavenClean Build"){
            steps{
               withSonarQubeEnv(installationName: 'sonarqube-jenkins', credentialsId: 'sonarqube-jenkin-token') {
-   		sh "mvn clean install sonar:sonar -Dsonar.sources=src/main/java/ -Dsonar.java.binaries=target/classes"
+   		sh "mvn clean install sonar:sonar -Dsonar.sources=src/main/java/ -Dsonar.java.binaries=./target/classes"
 	   }               
            }
         }
