@@ -12,12 +12,12 @@ public class OrdersController {
 	@GetMapping()
 	public String getAll() {
 		System.out.println("Called getALL Request ...");
-		return "Hello Bits Jenkins sessions ...... hai";
+		return "Hello Bits Jenkins sessions ...... Webhook Hai";
 	}
 	
 	@GetMapping("/{id}")
 	public String getById(@PathVariable("id") Integer id) {
-		System.out.println("Called getALL Request ...");
+		System.out.println("Called getALL Request ...web hook");
 		return "Hai-->" + id;
 	}
 }
