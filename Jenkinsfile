@@ -20,7 +20,7 @@ pipeline{
              // swithSonarQubeEnv(installationName: 'sonarqube-jenkins', credentialsId: 'sonarqube-jenkin-token') {
    		        //sh "mvn clean install sonar:sonar -Dsonar.sources=src/main/java/ -Dsonar.java.binaries=./target/classes"
 	          //} 
-               sh "mvn clean install"            
+               cmd mvn clean install          
            }
         }
 	 /*  
