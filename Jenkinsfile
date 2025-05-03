@@ -17,10 +17,10 @@ pipeline{
        }
        stage("sonar and mavenClean Build"){
            steps{
-             // withSonarQubeEnv(installationName: 'sonarqube-jenkins', credentialsId: 'sonarqube-jenkin-token') {
+             // swithSonarQubeEnv(installationName: 'sonarqube-jenkins', credentialsId: 'sonarqube-jenkin-token') {
    		        //sh "mvn clean install sonar:sonar -Dsonar.sources=src/main/java/ -Dsonar.java.binaries=./target/classes"
 	          //} 
-               mvn clean install            
+               sh "mvn clean install"            
            }
         }
 	 /*  
@@ -78,14 +78,14 @@ pipeline{
           
                                                    
         } //stages
-        post{
-          always{
+        //post{
+          //always{
             //script{
               //  sh 'docker logout'
             //}
 
-          } 
-        }
+          //} 
+        //}
 
     }// pipelin//e
 
