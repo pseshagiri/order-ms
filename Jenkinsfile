@@ -1,9 +1,9 @@
 pipeline{
     agent any
     
-     environment {
-       DOCKERHUB_CREDENTIALS = credentials('dockerhublogin')
-      }
+     //environment {
+       //DOCKERHUB_CREDENTIALS = credentials('dockerhublogin')
+     // }
     // tools {
        //tool name: 'Maven-3-9.1', type: 'maven'
       // maven: 'Maven3'
@@ -12,17 +12,18 @@ pipeline{
     stages{
        stage("Git Check Out"){
           steps{
-            git branch: 'main', credentialsId: 'gitid', url: 'https://github.com/pseshagiri/order-ms.git'
+            git branch: 'main', credentialsId: 'githubuserdetails', url: 'https://github.com/pseshagiri/order-ms.git'
           }
        }
        stage("sonar and mavenClean Build"){
            steps{
-              withSonarQubeEnv(installationName: 'sonarqube-jenkins', credentialsId: 'sonarqube-jenkin-token') {
-   		sh "mvn clean install sonar:sonar -Dsonar.sources=src/main/java/ -Dsonar.java.binaries=./target/classes"
-	   }               
+             // withSonarQubeEnv(installationName: 'sonarqube-jenkins', credentialsId: 'sonarqube-jenkin-token') {
+   		        //sh "mvn clean install sonar:sonar -Dsonar.sources=src/main/java/ -Dsonar.java.binaries=./target/classes"
+	          //} 
+               mvn clean install            
            }
         }
-	   
+	 /*  
 	 stage("Docker Image and Building"){
            steps{
             script {
@@ -34,6 +35,7 @@ pipeline{
                
            }
         }
+  */
         //stage("Docker Hub Push"){
           //steps{
            //script{
@@ -45,7 +47,7 @@ pipeline{
 		  //}	
 		 //}	        
         //}
-        
+        /*
         stage('Push') {
            steps {
            script{
@@ -58,7 +60,7 @@ pipeline{
              }
             } 
            }
-        }
+        }*/
                
       // stage("Kubernetus Deployment to mini kube"){
         // steps{
@@ -79,7 +81,7 @@ pipeline{
         post{
           always{
             //script{
-                sh 'docker logout'
+              //  sh 'docker logout'
             //}
 
           } 
